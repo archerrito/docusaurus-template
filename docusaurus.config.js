@@ -8,11 +8,12 @@ module.exports = {
   organizationName: 'your-org', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
-//    algolia: {
-//      apiKey: 'YOUR_API_KEY',
-//      indexName: 'YOUR_INDEX_NAME',
-//    },
+   algolia: {
+     apiKey: 'YOUR_API_KEY',
+     indexName: 'YOUR_INDEX_NAME',
+   },
     navbar: {
+      hideOnScroll: true,
       title: 'My Site',
       logo: {
         alt: 'My Site Logo',
@@ -25,6 +26,13 @@ module.exports = {
       links: [],
       copyright: `Copyright © ${new Date().getFullYear()}.`,
     },
+    algolia: {
+      contextualSearch: true,
+      apiKey: 'd081a1783dc1fceab58ce7cb1ad284eb',
+      indexName: 'getwisdom_developers',
+      // appId: 'app-id', // Optional, if you run the DocSearch crawler on your own
+      algoliaOptions: {}, // Optional, if provided by Algolia
+    },
   },
   presets: [
     [
@@ -33,9 +41,8 @@ module.exports = {
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          // In order to display a link to edit your documents, please change this value.
-          // Refer to Docusaurus v2 documentation for more info.
-          // editUrl: 'http://easydita.com',
+          docLayoutComponent: '@theme/DocPage',
+          docItemComponent: '@theme/DocItem',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

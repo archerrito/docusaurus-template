@@ -15,10 +15,18 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+
+  --doc-sidebar-width: 340px !important;
+
+  --ifm-toc-border-color: #efefef !important;
+  --ifm-menu-bg-color: #f7fafc !important;
+
+  /* footer */
+  --ifm-footer-background-color: #333333 !important;
 }
 
-:root html[data-theme='dark'] {
-  --ifm-color-primary: rgb(0, 71, 97);
+html[data-theme='dark'] {
+  --ifm-color-primary: #00aeef;
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);
   --ifm-color-primary-darkest: rgb(26, 136, 112);
@@ -26,6 +34,8 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+
+  --ifm-heading-color: #333333;
 }
 
 .docusaurus-highlight-code-line {
@@ -35,9 +45,9 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
-/* Sidebar root folders */
-.menu {
-  background-color: #f7fafc;
+/* Sidebar style */
+[class*='docSidebarContainer_'] {
+  background: var(--ifm-menu-bg-color);
 }
 .menu__list .menu__list {
   margin-left: var(--ifm-menu-link-padding-horizontal);
@@ -96,25 +106,7 @@ html[data-theme='dark'] .menu__link:not(.menu__link--active) {
   margin-top: 0.25rem;
   margin-left: 0.35rem;
 }
-
-/* Too Deep with many long SQL query reports */
-a.menu__link.menu__link.menu__link[href*='/sql-reports/'],
-a.menu__link.menu__link.menu__link[href*='/sql-tables/'] {
-  font-size: 0.8em;
-  line-height: 0.9;
-  padding: 0.3em 0.2em;
-  margin-left: 0.5em;
-}
-
-/* FAQ paths need full question titles, so we make them smaller. */
-a.menu__link.menu__link.menu__link[href^='/faq/'] {
-  line-height: 1.1;
-  font-size: 0.75rem;
-  margin-top: -0.125rem;
-  margin-left: 0em;
-  margin-right: 0em;
-  padding: 0.3em 0.3em;
-}
+/* END Sidebar style */
 
 .btn {
   margin-right: 10px;
@@ -143,8 +135,18 @@ a.menu__link.menu__link.menu__link[href^='/faq/'] {
   background-color: #333333;
 }
 
+/* Document style */
+[class^='col docItemCol_'],
+[class*='docItemCol_'] {
+  padding: 0 5rem 6rem 8rem !important;
+}
+/* END Document style */
+
 .main {
   background: white;
+}
+.markdown {
+  --ifm-h1-vertical-rhythm-top: 1;
 }
 html[data-theme='dark']
 
@@ -247,6 +249,154 @@ html[data-theme='dark'] code {
 html[data-theme='dark'] .navbar {
   background: #121212;
 }
+nav.navbar {
+  display: none;
+  margin-left: var(--doc-sidebar-width);
+  width: calc(100% - var(--doc-sidebar-width));
+}
+@media (max-width: 996px) {
+  nav.navbar {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
+
+/* Top nav bar */
+.navbar__brand {
+  display: none;
+}
+.navbar__search {
+  padding-bottom: 1em;
+  padding-right: 1em;
+}
+.navbar__search-input {
+  width: 100%;
+}
+ul.menu__list {
+  display: flex;
+  flex-direction: column;
+}
+.menu > .menu__list > .menu__list-item:last-child {
+  display: none;
+}
+/* End Top nav bar */
+
+/* Feature Icons for External Links */
+a:not([href^='#']):not(.anchor):not([href^='/']):after {
+  font-family: 'feather' !important;
+  transform: none !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: '\e869';
+  padding-left: 0.25em;
+}
+
+.pagination-nav__link {
+  border-radius: 0.5rem;
+  border: 1px solid #dadde1;
+  box-shadow: rgba(0, 27, 61, 0.05) 0px 0px 10px 0px;
+}
+
+.pagination-nav__label {
+  color: rgb(0, 27, 61);
+}
+
+/* Right side table content styles */
+ul.table-of-contents li {
+  margin-right: 0;
+}
+ul.table-of-contents__left-border {
+  border: none;
+}
+
+.table-of-contents__link {
+  color: var(--ifm-color-primary);
+}
+.table-of-contents__link--active {
+  font-weight: 600;
+  /* text-decoration: underline; */
+}
+.tableOfContents {
+  padding-left: 1em;
+}
+.table-of-contents__link--active::before {
+  /* content: '>'; */
+  content: '👉';
+  color: #222;
+  margin-left: -1.25em;
+  width: 1.25em;
+  display: inline-block;
+  font-size: 1.5em;
+  font-family: monospace;
+  font-weight: 900;
+  line-height: 0;
+}
+html[data-theme='dark'] .table-of-contents__link--active::before {
+  color: #ddd;
+}
+html[data-theme='dark'] a.table-of-contents__link {
+  color: #008abd;
+}
+/* END Right side table content styles */
+
+hr {
+  border: none;
+  height: 5em;
+  margin: 4rem calc(-6rem - 1px);
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+/* Main page content style */
+main {
+  background: white;
+}
+main .container {
+  margin-left: unset;
+  margin-right: unset;
+}
+
+html[data-theme='dark'] main {
+  background: hsla(0, 0%, 3%, 1);
+}
+/* Main page content style */
+
+.DocSearch {
+  width: calc(var(--doc-sidebar-width) - 35px);
+  padding: 20px 10px;
+}
+
+.DocSearch-Button.DocSearch-Button {
+  margin-right: 16px;
+  margin-top: 4px;
+  margin-bottom: 1rem;
+}
+.DocSearch-Container {
+  z-index: 999;
+}
+.DocSearch-Button-Placeholder {
+  flex-grow: 1;
+  text-align: left;
+  margin-top: 2px;
+}
+.DocSearch-Button-Key.DocSearch-Button-Key {
+  box-shadow: rgb(205, 205, 230) 0px -1px 0px 0px inset,
+    rgb(255, 255, 255) 0px 0px 0.75px 0.5px inset,
+    rgba(30, 35, 90, 0.4) 0px 0px 0px 0.25px;
+}
+.DocSearch-Search-Icon {
+  stroke-width: 1.5px;
+  width: 17px;
+  margin-left: 3px;
+}
+
+/* // A few miscellaneous styles */
 
 ::-moz-selection {
   background-color: rgba(91, 48, 156, 0.9) !important;
@@ -300,3 +450,141 @@ button {
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+
+pre,
+code {
+  font-family: 'Source Code Pro', Menlo, monospace;
+  font-weight: 400;
+}
+
+pre.prism-code.prism-code {
+  font-size: 0.85em;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.hash-link {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Order list styles */
+ol {
+  border-left: 1px solid var(--ifm-hr-border-color);
+  counter-reset: sections-counter;
+  list-style: none;
+  margin-left: 1em;
+  padding-left: 1.75em;
+}
+ol > li {
+  counter-increment: sections-counter;
+  margin-bottom: 0;
+}
+ol > li:before {
+  margin: 0.2em 0 0 -2.2em;
+  border-radius: 100%;
+  content: counter(sections-counter);
+  float: left;
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 1em;
+  padding: 0.2em 0.2em;
+  text-align: center;
+  color: white;
+  background: #c6c6c6;
+}
+ol > li > h3 {
+  margin-bottom: var(--ifm-spacing-vertical);
+}
+/* END Order list styles */
+
+/* Article styles */
+article .inline img,
+article .inline svg,
+article .inline {
+  width: auto !important;
+  margin: 0;
+  box-shadow: none;
+  display: inline;
+  vertical-align: middle;
+}
+article img {
+  border: 1px solid #d9d9d9;
+  box-shadow: 0 0 6px 0 #d9d9d9;
+  cursor: pointer;
+  margin: 16px 16px 64px;
+  margin: 1rem 1rem 4rem;
+  width: 100%;
+}
+article table img {
+  margin: 0;
+  box-shadow: none;
+  border: none;
+}
+article img.expanded.expanded {
+  background: #000000d0;
+  bottom: 0;
+  box-shadow: 0 0 0 100rem #000000d0;
+  /* height: auto; */
+  height: unset !important;
+  left: 0;
+  margin: auto !important;
+  max-height: 100vh;
+  max-width: 90vw !important;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 90vw !important;
+  z-index: 1;
+}
+
+article img.noShadow,
+article .noShadow > img {
+  border: none;
+  box-shadow: none;
+}
+
+article a > img.inlineMini {
+  margin: 0;
+  display: inline;
+  vertical-align: middle;
+  height: 2rem;
+  width: auto;
+  border: none;
+}
+/* END Article styles */
+
+/* No JavaScript Warning */
+@media (min-width: 996px) {
+  body.no-js .menu::after {
+    content: 'Please enable JavaScript.';
+    padding: 1rem;
+    background: #ff6522;
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 100px;
+    animation-name: slideinNoJs;
+    animation-duration: 300ms;
+    animation-delay: 1000ms;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.96, 0, 0.72, 1.28);
+    animation-iteration-count: 1;
+  }
+
+  @keyframes slideinNoJs {
+    from {
+      top: 100px;
+    }
+    to {
+      top: 0px;
+    }
+  }
+}
+
+/* Sidebar is JS created. */
+body.no-js div[class^='tableOfContents_tVyB'] {
+  display: none;
+}
