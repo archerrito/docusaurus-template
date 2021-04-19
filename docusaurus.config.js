@@ -37,8 +37,8 @@ module.exports = {
         "docs": {
           "routeBasePath": '/',
           "sidebarPath": require.resolve('./sidebars.js'),
-          // docLayoutComponent: '@theme/DocPage',
-          // docItemComponent: '@theme/DocItem',
+          docLayoutComponent: '@theme/DocPage',
+          docItemComponent: '@theme/DocItem',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
