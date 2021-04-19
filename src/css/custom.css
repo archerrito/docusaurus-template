@@ -148,6 +148,14 @@ html[data-theme='dark'] .menu__link:not(.menu__link--active) {
 .markdown {
   --ifm-h1-vertical-rhythm-top: 1;
 }
+.docTitle,
+.markdown > h1 {
+  font-size: 2rem;
+  margin-bottom: calc(var(--ifm-leading-desktop) * var(--ifm-leading));
+  margin-top: 0;
+  border-bottom: 1px solid #f2f2f2;
+  line-height: 1.2;
+}
 html[data-theme='dark']
 
 
@@ -250,15 +258,12 @@ html[data-theme='dark'] .navbar {
   background: #121212;
 }
 nav.navbar {
-  display: none;
+  display: none !important;
   margin-left: var(--doc-sidebar-width);
   width: calc(100% - var(--doc-sidebar-width));
 }
-@media (max-width: 996px) {
-  nav.navbar {
-    margin-left: 0px;
-    width: 100%;
-  }
+nav.navbar .DocSearch {
+  display: none !important;
 }
 
 /* Top nav bar */
@@ -293,7 +298,7 @@ a:not([href^='#']):not(.anchor):not([href^='/']):after {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  content: '\e869';
+
   padding-left: 0.25em;
 }
 
