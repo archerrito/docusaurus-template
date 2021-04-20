@@ -158,8 +158,11 @@ const DocSidebar = (props) => {
   if (!currentSidebar) {
     return null;
   }
+  console.log('current sidebar', currentSidebar)
 
   const sidebarData = docsSidebars[currentSidebar];
+
+  console.log('sidebar data', sidebarData)
 
   if (!sidebarData) {
     throw new Error(
