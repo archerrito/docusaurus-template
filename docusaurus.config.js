@@ -34,9 +34,9 @@ module.exports = {
     [
       '@docusaurus/preset-classic',
       {
-        "docs": {
-          "routeBasePath": '/',
-          "sidebarPath": require.resolve('./sidebars.js'),
+        docs: {
+          routeBasePath: '/',
+          sidebarPath: require.resolve('./sidebars.js'),
           docLayoutComponent: '@theme/DocPage',
           docItemComponent: '@theme/DocItem',
         },
